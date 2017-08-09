@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import CircularProgress from 'material-ui/CircularProgress'
+//import CircularProgress from 'material-ui/CircularProgress'
+import NavDrawer from '../components/NavDrawer.js'
 
 injectTapEventPlugin()
 
@@ -12,12 +13,7 @@ class Template extends Component {
 		return(
 			<MuiThemeProvider>
 				<div>
-					<header>
-						<h1>Glory Glory Mazzo Genius!</h1>
-						<CircularProgress
-							onTouchTap={()=>{console.log('check one two buddy')}}
-						/>
-					</header>
+					<NavDrawer/>
 
 					<main>
 					{this.props.children}
