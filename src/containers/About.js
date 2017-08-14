@@ -6,7 +6,7 @@ class About extends Component {
 	static defaultProps = {
 		user: {
 			email: 'USER_EMAIL', 
-			game: [
+			games: [
 
 				{
 				winner: true,
@@ -25,6 +25,36 @@ class About extends Component {
 				}
 			]
 		}
+
+	}
+
+	get records(){
+		return this.props.user.games.map( (game, index) => {
+
+			return(
+					<GameRecord
+						key={index}
+						index={index}
+					>
+					<Column>
+						{(game.winner) ? 'Won!' : 'No win.'}
+					</Column>
+
+					<Column>
+						"ROBOT"
+					</Column>
+
+					<Column>
+						"No"
+					</Column>
+
+					<Column>
+						{game.createdAt}
+					</Column>
+
+					</GameRecord>
+				)
+		})
 
 	}
 
@@ -56,6 +86,8 @@ class About extends Component {
 							Date
 						</Column>
 					</ColumnLabels>
+
+					{this.records}
 
 					</GameList>
 
