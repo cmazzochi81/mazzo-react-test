@@ -1,16 +1,67 @@
 import React, {Component} from 'react'
+import {Container, Name, GameListHeader, GameList, GameRecord, Column, ColumnLabels} from '../styled/About'
 
 class About extends Component {
 
+	static defaultProps = {
+		user: {
+			email: 'USER_EMAIL', 
+			game: [
+
+				{
+				winner: true,
+				createdAt: '12/25/2016', 
+				id: '0001'
+				}, 
+				{
+				winner: true,
+				createdAt: '12/26/2016', 
+				id: '0002'
+				},
+				{
+				winner: true,
+				createdAt: '12/27/2016', 
+				id: '0003'
+				}
+			]
+		}
+
+	}
+
 	render(){
+		let{email} = this.props.user
 
 		return(
-				<div>
-					<h2>About</h2>
+				<Container>
+					<Name>
+						{email}
+					</Name>
 
-				</div>
+					<GameList>
+						<GameListHeader>
+						My Games
+						</GameListHeader>
 
+						<ColumnLabels>
+						<Column>
+							Outcome
+						</Column>
+						<Column>
+							Guess
+						</Column>
+						<Column>
+							Guessed Correctly
+						</Column>
+						<Column>
+							Date
+						</Column>
+					</ColumnLabels>
 
+					</GameList>
+
+					
+
+				</Container>
 			)
 	}
 
