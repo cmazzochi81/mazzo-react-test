@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Container, Name, GameListHeader, GameList, GameRecord, Column, ColumnLabels} from '../styled/About'
+import Relay from 'react-relay'
 
 class About extends Component {
 
@@ -99,4 +100,20 @@ class About extends Component {
 
 }
 
-export default About
+//export default About
+
+export default Relay.createContainer(
+		About, {
+			fragments: {
+				viewer: () => Relay.QL`
+					fragment on Viewer{
+						user{
+							id
+						}
+					}
+
+				`,
+			}
+		}
+
+	)

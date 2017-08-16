@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Stage} from 'react-konva'
 import {Board, Squares} from '../styled/Home'
+import Relay from 'react-relay'
 
 class Home extends Component {
 
@@ -169,4 +170,20 @@ class Home extends Component {
 			)
 	}
 }
-export default Home
+//export default Home
+
+export default Relay.createContainer(
+		Home, {
+			fragments: {
+				viewer: () => Relay.QL`
+					fragment on Viewer{
+						user{
+							id
+						}
+					}
+
+				`,
+			}
+		}
+
+	)
