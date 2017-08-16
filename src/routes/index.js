@@ -4,6 +4,7 @@ import Template from '../containers/Template'
 import Home from '../containers/Home'
 import About from '../containers/About'
 import Relay from 'react-relay'
+import auth from '../utils/auth'
 
 const ViewerQueries = {
 	//In this ViewerQueries object, you're ensuring each of your routes has 
@@ -20,6 +21,7 @@ const createRoutes = () => {
 				component={Template}
 				//Passing the ViewerQueries to each of your routes
 				queries={ViewerQueries}
+				auth={auth}
 			>
 
 				<IndexRoute
