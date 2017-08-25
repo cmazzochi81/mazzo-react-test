@@ -2,7 +2,7 @@ import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 
 const AuthButton = (props) => {
-	if(props.authenticated){
+	if (props.authenticated) {
 		return (
 			<RaisedButton
 				label='Logout'
@@ -11,8 +11,8 @@ const AuthButton = (props) => {
 				secondary
 			/>
 		)
-	}else {
-		return(
+	} else {
+		return (
 			<RaisedButton
 				label={'Login / Signup'}
 				onTouchTap={props.auth.showLock}
@@ -21,8 +21,6 @@ const AuthButton = (props) => {
 			/>
 		)
 	}
-
 }
-
 
 export default AuthButton

@@ -5524,6 +5524,10 @@ relateurl@0.2.x:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
 
+relay-commit-mutation-promise@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/relay-commit-mutation-promise/-/relay-commit-mutation-promise-1.0.0.tgz#455b52f58c806779b28eb60a28b213815d4e721c"
+
 remove-trailing-separator@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.0.2.tgz#69b062d978727ad14dc6b56ba4ab772fd8d70511"

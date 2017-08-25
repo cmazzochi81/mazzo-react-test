@@ -6,10 +6,11 @@ import SigninUser from '../mutations/SigninUser'
 const authDomain = 'mazzo-react-test.auth0.com'
 const clientId = '6RZrTAzFkCrmoLUeqjz7uGhtXzy2aCOp'
 
-class AuthService{
-	constructor(){
+class AuthService {
+	constructor() {
 		this.lock = new Auth0Lock(clientId, authDomain, {
 			auth: {
+
 				params: {
 					scope: 'openid email'
 				},
@@ -25,17 +26,16 @@ class AuthService{
 		let {
 			email,
 			exp
-
 		} = authResult.idTokenPayload
-		const idToken = authResult.idToken	
+		const idToken = authResult.idToken
 
 		this.signinUser({
 			idToken,
 			email,
 			exp
 		}).then(
-			success=> success, 
-			rejected=> {
+			success => success,
+			rejected => {
 				this.createUser({
 					idToken,
 					email,
@@ -43,9 +43,10 @@ class AuthService{
 				}).then()
 			}
 		)
+
 	}
 
-	showLock(){
+	showLock() {
 		this.lock.show()
 	}
 
@@ -60,25 +61,25 @@ class AuthService{
 
 	isCurrent = () => {
 		let expString = localStorage.getItem('exp')
-		if(!expString){
+		if (!expString) {
 			localStorage.removeItem('idToken')
 			return false
 		}
 		let now = new Date()
-		let exp = new Date(parseInt(expString, 10))
-		if(exp < now) {
+		let exp = new Date(parseInt(expString, 10)) //10 is radix parameter
+		if ( exp < now ) {
 			this.logout()
 			return false
-		}else{
+		} else {
 			return true
 		}
 	}
 
-	getToken(){
+	getToken() {
 		let idToken = localStorage.getItem('idToken')
-		if(this.isCurrent() && idToken) {
+		if (this.isCurrent() && idToken) {
 			return idToken
-		}else{
+		} else {
 			localStorage.removeItem('idToken')
 			localStorage.removeItem('exp')
 			return false
@@ -93,44 +94,48 @@ class AuthService{
 
 	createUser = (authFields) => {
 		return new Promise( (resolve, reject) => {
-
 			Relay.Store.commitUpdate(
-					new CreateUser({
-						email: authFields.email,
-						idToken: authFields.idToken
-					}), {
-						onSuccess: (response) => {
-							this.SigninUser(authFields)
-							resolve(response)
-						}, 
-						onFailure: (response) => {
-							console.log('CreateUser error', response)
-							reject(response)
-						}
+				new CreateUser({
+					email: authFields.email,
+					idToken: authFields.idToken
+				}), {
+					
+					onSuccess: (response) => {
+						
+						this.signinUser(authFields)
+						resolve(response)
+					},
+					
+					onFailure: (response) => {
+						
+						//console.log('CreateUser error homie', response)
+						reject(response)
 					}
-				)
-
+				}
+			)
 		})
 	}
 
 	signinUser = (authFields) => {
-		return new Promise((resolve, reject) => {
 
-
+		return new Promise( (resolve, reject) => {
 			Relay.Store.commitUpdate(
-					new SigninUser({
-
-						idToken: authFields.idToken
-					}), {
-						onSuccess: (response) => {
-							this.setToken(authFields)
-							resolve(response)
-						}, 
-						onFailure: (response => {
-							reject(response)
-						})
+				new SigninUser({
+					idToken: authFields.idToken
+				}), {
+					
+					onSuccess: (response) => {
+						
+						this.setToken(authFields)
+						resolve(response)
+					},
+					
+					onFailure: (response) => {
+						
+						reject(response)
 					}
-				)
+				}
+			)
 		})
 	}
 
@@ -139,3 +144,4 @@ class AuthService{
 const auth = new AuthService()
 
 export default auth
+
