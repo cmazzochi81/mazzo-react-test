@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Stage} from 'react-konva'
 import {Board, Squares} from '../styled/Home'
 import Relay from 'react-relay'
+import TuringTest from '../styled/TuringTest'
 
 class Home extends Component {
 
@@ -30,7 +31,8 @@ class Home extends Component {
 		win: false
 	}
 
-	//A component lifecycle function that will execute every time it is mounted to the DOM
+	//A component lifecycle function that will execute every time 
+	//the Home component, is mounted to the DOM
 	componentWillMount(){
 		let height = window.innerHeight
 		let width = window.innerWidth
@@ -118,11 +120,18 @@ class Home extends Component {
 		}
 
 		turingTest = () => {
+			if(this.state.gameOver){
+				return(
+						<TuringTest
+							recordGame={this.recordGame}
+						/>
+					)
+			}
 
 		}
 
-		recordGame = () => {
-
+		recordGame = (guess) => {
+			console.log(guess)
 		}	
 	
 
@@ -165,7 +174,7 @@ class Home extends Component {
 						/>
 
 					</Stage>
-
+						{this.turingTest()}
 				</div>
 			)
 	}

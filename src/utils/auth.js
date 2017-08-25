@@ -27,6 +27,7 @@ class AuthService {
 			email,
 			exp
 		} = authResult.idTokenPayload
+
 		const idToken = authResult.idToken
 
 		this.signinUser({
@@ -108,7 +109,6 @@ class AuthService {
 					
 					onFailure: (response) => {
 						
-						//console.log('CreateUser error homie', response)
 						reject(response)
 					}
 				}
