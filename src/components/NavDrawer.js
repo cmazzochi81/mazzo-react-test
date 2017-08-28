@@ -51,10 +51,10 @@ class NavDrawer extends Component{
 						primaryText={'Home'}/>
 					</Link>
 							
-					<Link to={'/About'}>
+					<Link to={'/Profile'}>
 						<MenuItem 
 						onTouchTap={this.toggle}
-						primaryText={'About'}/>
+						primaryText={'Profile'}/>
 					</Link>
 
 				</Drawer>
