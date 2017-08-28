@@ -132,7 +132,6 @@ class Home extends Component {
 		}
 
 		recordGame = (guess) => {
-			//console.log(guess)
 			let{user} = this.props.viewer
 			let{relay} = this.props
 			let{winner, ownMark} = this.state
@@ -141,7 +140,8 @@ class Home extends Component {
 				let guessCorrect = (guess === 'ROBOT') ? true : false
 				relay.commitUpdate(
 					new CreateGame({
-						p1user: user,
+						//p1user: user,
+						user,
 						winnerId, 
 						guess, 
 						guessCorrect

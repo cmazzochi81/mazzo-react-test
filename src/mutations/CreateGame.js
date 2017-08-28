@@ -5,10 +5,11 @@ export default class CreateGame extends Relay.Mutation {
 	getVariables() {
 		return {
 			
-			p1userId: this.props.userId,
+			p1userId: this.props.user.id,
 			winnerId: this.props.winnerId,
 			p1Guess: this.props.guess,
 			p1GuessCorrect: this.props.guessCorrect
+
 		}
 	}
 
@@ -29,7 +30,7 @@ export default class CreateGame extends Relay.Mutation {
 			{
 				type: 'RANGE_ADD',
 				parentName: 'p1user',
-				parentID: this.props.userId,
+				parentID: this.props.user.id,
 				connectionName: 'p1games',
 				edgeName: 'edge',
 				rangeBehaviors: {
