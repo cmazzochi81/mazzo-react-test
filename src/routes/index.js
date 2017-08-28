@@ -2,7 +2,7 @@ import React from 'react'
 import {Route, IndexRoute} from 'react-router'
 import Template from '../containers/Template'
 import Home from '../containers/Home'
-import About from '../containers/About'
+import Profile from '../containers/Profile'
 import Relay from 'react-relay'
 import auth from '../utils/auth'
 
@@ -30,8 +30,8 @@ const createRoutes = () => {
 				/>
 
 				<Route 
-					path={'/about'}
-					component={About}
+					path={'/profile'}
+					component={Profile}
 					queries={ViewerQueries}
 				/>	
 
